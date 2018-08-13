@@ -2,35 +2,8 @@
 #include<stdlib.h>
 
 
-void compactar(){
-	
-}
-int main(){
-	char type[2];
-	int width;
-	int height;
-	int limit;
-	int **matriz;
-	int i,j,n;
-	
-	gets(type);
-	scanf("%d", &width);
-	scanf("%d", &height);
-	scanf("%d", &limit);
-	
-	matriz=(int**)malloc(height*sizeof(int*));
-	for(n=0;n<width;n++){
-		matriz[n]=(int*)malloc(width * sizeof(int));
-	}
-	
-	
-	for(i=0;i<height;i++){
-		for( j=0;j<width;j++){
-			int val;
-			scanf("%d",&val);
-			matriz[i][j]=val;
-		}
-	}
+void compactar(int **matriz,int height,int width,int limit){
+	int i,j;
 	
 	for(i = 0; i <height ; i++){
 		for(j = 0; j < width; j++){
@@ -58,7 +31,9 @@ int main(){
 			
 		}
 	}
-	
+	printf("P8\n");
+	printf("%d %d\n",width,height);
+	printf("%d\n",limit);
 	for(i=0;i<height;i++){
 		for( j=0;j<width;j++){      
 			 int value=matriz[i][j];
@@ -69,6 +44,39 @@ int main(){
 		}
 		printf("\n");
 	}
+	
+}
+int main(){
+	char type[2];
+	int width;
+	int height;
+	int limit;
+	int **matriz;
+	int i,j,n;
+	
+	gets(type);
+	scanf("%d", &width);
+	scanf("%d", &height);
+	scanf("%d", &limit);
+	
+	matriz=(int**)malloc(height*sizeof(int*));
+	for(n=0;n<width;n++){
+		matriz[n]=(int*)malloc(width * sizeof(int));
+	}
+	
+	
+	
+	for(i=0;i<height;i++){
+		for( j=0;j<width;j++){
+			int val;
+			scanf("%d",&val);
+			matriz[i][j]=val;
+		}
+	}
+	
+	compactar(matriz,height,width,limit);
+	
+	
 	getch(0);
 	return 0;
 }
