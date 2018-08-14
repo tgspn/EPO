@@ -1,3 +1,5 @@
+//Emerson do Amaral SC300077X
+//Tiago Spana 130178-1
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -60,22 +62,24 @@ void compactar(int height,int width,int limit){
 		}
 		printf("\n");
 	}
+
+	for(n=0;n<width;n++){
+		free(matriz[n]);
+	}
+	free(matriz);
 	
 }
 void descompactar(int height,int width,int limit){
 	int i,j,n;
 	int **matriz;
-	char lastVal[4];
 	matriz=(int**)malloc(height*sizeof(int*));
 	for(n=0;n<width;n++){
 		matriz[n]=(int*)malloc(width * sizeof(int));
 	}
-	
-	
 
 	for(i=0;i<height;i++){
-	char val;
 		for( j=0;j<width;j++){
+			char val;
       scanf("%c",&val);
 
 			if('@'== val){
@@ -104,6 +108,10 @@ void descompactar(int height,int width,int limit){
 		}
 		printf("\n");
 	}
+	for(n=0;n<width;n++){
+		free(matriz[n]);
+	}
+	free(matriz);
 }
 int main(){
 	char type[2];
