@@ -18,7 +18,7 @@ int main(){
 	int i;
 	scanf("%d",&n);
 	
-	vetor=(int*) calloc (n, sizeof(int));
+	vetor=(int*) malloc (n * sizeof(int));
 	
 	for (i = 0 ; i < n; i++){
 		scanf("%d",&vetor[i]);
@@ -27,6 +27,8 @@ int main(){
 	ordenar(vetor,n);
 	
 	printf("%d\n%d",vetor[0],vetor[1]);
+	}else{
+		printf("%d",n);
 	}
 	return n;
 	

@@ -2,9 +2,25 @@
 #include<stdlib.h>
 
 
-void compactar(int **matriz,int height,int width,int limit){
-	int i,j;
+void compactar(int height,int width,int limit){
+
+	int i,j,n;
+	int **matriz;
 	
+	matriz=(int**)malloc(height*sizeof(int*));
+	for(n=0;n<width;n++){
+		matriz[n]=(int*)malloc(width * sizeof(int));
+	}
+	
+	
+	
+	for(i=0;i<height;i++){
+		for( j=0;j<width;j++){
+			int val;
+			scanf("%d",&val);
+			matriz[i][j]=val;
+		}
+	}
 	for(i = 0; i <height ; i++){
 		for(j = 0; j < width; j++){
 			int current=matriz[i][j];
@@ -46,12 +62,55 @@ void compactar(int **matriz,int height,int width,int limit){
 	}
 	
 }
+void descompactar(int height,int width,int limit){
+	int i,j,n;
+	int **matriz;
+	char lastVal[4];
+	matriz=(int**)malloc(height*sizeof(int*));
+	for(n=0;n<width;n++){
+		matriz[n]=(int*)malloc(width * sizeof(int));
+	}
+	
+	
+
+	for(i=0;i<height;i++){
+	char val;
+		for( j=0;j<width;j++){
+      scanf("%c",&val);
+
+			if('@'== val){
+				int dig;
+				int qtd;
+				scanf("%d",&dig);
+				scanf("%d",&qtd);
+				j--;
+				for(n=0;n<qtd;n++,j++){
+					matriz[i][j]=dig;
+				}				
+				j--;
+
+			}else{
+			 		scanf("%d",&matriz[i][j]);
+			}
+		}
+	}
+	printf("P2\n");
+	printf("%d %d\n",width,height);
+	printf("%d\n",limit);
+	for(i=0;i<height;i++){
+		for( j=0;j<width;j++){      
+			 int value=matriz[i][j];
+			 printf(" %d ",matriz[i][j]);
+		}
+		printf("\n");
+	}
+}
 int main(){
 	char type[2];
 	int width;
 	int height;
 	int limit;
-	int **matriz;
+	
 	int i,j,n;
 	
 	gets(type);
@@ -59,22 +118,11 @@ int main(){
 	scanf("%d", &height);
 	scanf("%d", &limit);
 	
-	matriz=(int**)malloc(height*sizeof(int*));
-	for(n=0;n<width;n++){
-		matriz[n]=(int*)malloc(width * sizeof(int));
-	}
 	
-	
-	
-	for(i=0;i<height;i++){
-		for( j=0;j<width;j++){
-			int val;
-			scanf("%d",&val);
-			matriz[i][j]=val;
-		}
-	}
-	
-	compactar(matriz,height,width,limit);
+	if(strcmp("P2",type)==0)
+        compactar(height,width,limit);
+    else if(strcmp("P8",type)==0)
+        descompactar(height,width,limit);
 	
 	
 	getch(0);
